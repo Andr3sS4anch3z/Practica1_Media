@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Practica1_Media_
+{
+    public class Reserva
+    {
+        private const decimal TasaItbis = 0.18m;
+        private const decimal TasaServicio = 0.10m;
+        private const decimal TasaDescuento = 0.10m;
+        private const decimal RecargaTemporadaAlta = 0.25m;
+        private const int NochesParaDescuentos = 7;
+
+        public string Huesped { get; set; } = "";
+        public int Noches { get; set; } 
+        public decimal TarifaPorNoche { get; set; }
+        public bool EsTemporadaAlta { get; set; }
+
+        public decimal Subtotal => EsTemporadaAlta 
+        ? TarifaPorNoche * Noches * (1 + RecargaTemporadaAlta) 
+        : TarifaPorNoche * Noches;
+
+        public decimal Descuento =>
+            Noches >= NochesParaDescuentos ? Subtotal * TasaDescuento : 0m;
+
+        public decimal BaseImponible => Subtotal - Descuento;
+        public decimal Itbis => BaseImponible * TasaItbis;
+
+        public decimal Servicio => BaseImponible * TasaServicio;
+        public decimal Total => BaseImponible + Itbis + Servicio;
+    }
+}
