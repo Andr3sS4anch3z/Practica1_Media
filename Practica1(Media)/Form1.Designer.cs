@@ -52,6 +52,7 @@ namespace Practica1_Media_
             label1 = new Label();
             btnImperativo = new Button();
             lstResultados = new ListBox();
+            btnNivel1 = new Button();
             ((System.ComponentModel.ISupportInitialize)nudNoches).BeginInit();
             gbCotizador.SuspendLayout();
             gbTotales.SuspendLayout();
@@ -295,11 +296,22 @@ namespace Practica1_Media_
             lstResultados.TabIndex = 12;
             lstResultados.SelectedIndexChanged += lstResultados_SelectedIndexChanged;
             // 
+            // btnNivel1
+            // 
+            btnNivel1.Location = new Point(331, 481);
+            btnNivel1.Name = "btnNivel1";
+            btnNivel1.Size = new Size(94, 29);
+            btnNivel1.TabIndex = 13;
+            btnNivel1.Text = "Nivel 1";
+            btnNivel1.UseVisualStyleBackColor = true;
+            btnNivel1.Click += btnNivel1_Click;
+            // 
             // frmInicio
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(889, 553);
+            Controls.Add(btnNivel1);
             Controls.Add(lstResultados);
             Controls.Add(btnImperativo);
             Controls.Add(gbTotales);
@@ -351,5 +363,6 @@ namespace Practica1_Media_
         private Label lblDescuento;
         private Button btnImperativo;
         private ListBox lstResultados;
+        private Button btnNivel1;
     }
 }
