@@ -57,16 +57,6 @@ namespace Practica1_Media_
             decimal servicio = baseImponible * 0.10m;
             decimal total = (baseImponible + itbis + servicio);
 
-            if (temporadaAlta)
-            {
-                total += total * 0.25m;
-            }
-
-            if (FinDeSemana)
-            {
-                total += total * 0.15m;
-            }
-
             lstResultados.Items.Add($"[imperativo] {huesped}: US$ {total:N2}");
         }
 
@@ -211,14 +201,11 @@ namespace Practica1_Media_
             }
 
 
-            decimal tasa = Convert.ToDecimal(nudTasa.Value);
-            decimal pesos = tasa * total;
+            decimal deposito = total * 0.30m;
+            decimal saldoPendiente = total - deposito;
 
-            decimal deposito = pesos * 0.30m;
-            decimal saldoPendiente = pesos - deposito;
-
-            lstResultados.Items.Add($"Deposito inicial: RD$ {deposito:N2}");
-            lstResultados.Items.Add($"Pendiente: RD$ {saldoPendiente:N2}");
+            lstResultados.Items.Add($"Deposito inicial:  {deposito:N2}");
+            lstResultados.Items.Add($"Pendiente:  {saldoPendiente:N2}");
         }
 
         private void btnFinSemana_Click(object sender, EventArgs e)
@@ -248,7 +235,8 @@ namespace Practica1_Media_
 
             if (FinDeSemana)
             {
-                total = total * 0.15m;
+                total = total * 1.15m;
+
             }
 
             lstResultados.Items.Add($"[Fin de semana (15%)] {huesped}: US$ {total:N2}");
