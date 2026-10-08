@@ -42,6 +42,8 @@ namespace Practica1_Media_
             string huesped = txtHuesped.Text;
             int noches = (int)nudNoches.Value;
             decimal tarifa = Convert.ToDecimal(txtTarifa.Text);
+            bool temporadaAlta = ckTemporada.Checked;
+            bool FinDeSemana = chkFinSemana.Checked;
 
             decimal subtotal = noches * tarifa;
             decimal descuento = 0m;
@@ -51,9 +53,19 @@ namespace Practica1_Media_
             }
 
             decimal baseImponible = subtotal - descuento;
-            decimal itbis = baseImponible * 0.10m;
+            decimal itbis = baseImponible * 0.18m;
             decimal servicio = baseImponible * 0.10m;
-            decimal total = baseImponible + itbis + servicio;
+            decimal total = (baseImponible + itbis + servicio);
+
+            if (temporadaAlta)
+            {
+                total += total * 0.25m;
+            }
+
+            if (FinDeSemana)
+            {
+                total += total * 0.15m;
+            }
 
             lstResultados.Items.Add($"[imperativo] {huesped}: US$ {total:N2}");
         }
@@ -101,6 +113,183 @@ namespace Practica1_Media_
             T = T + T * 0.25m; //la respuesta es 150//
 
             int noches = (int)8.9m; //la respuesta es 8//
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPesos_Click(object sender, EventArgs e)
+        {
+            int noches = (int)nudNoches.Value;
+            decimal tarifa = Convert.ToDecimal(txtTarifa.Text);
+            int CantidadHuespedes = (int)nudHuespedes.Value;
+            bool temporadaAlta = ckTemporada.Checked;
+            bool FinDeSemana = chkFinSemana.Checked;
+
+            decimal subtotal = noches * tarifa;
+            decimal baseImponible = subtotal;
+            decimal itbis = baseImponible * 0.18m;
+            decimal servicio = baseImponible * 0.10m;
+            decimal total = (baseImponible + itbis + servicio);
+
+            if (temporadaAlta)
+            {
+                total += total * 0.25m;
+            }
+
+            if (FinDeSemana)
+            {
+                total += total * 0.15m;
+            }
+
+
+            decimal tasa = Convert.ToDecimal(nudTasa.Value);
+            decimal pesos = tasa * total;
+            lstResultados.Items.Add($"Total en pesos: RD$ {pesos:N2}");
+        }
+
+        private void btnPorPersona_Click(object sender, EventArgs e)
+        {
+            string huesped = txtHuesped.Text;
+            int noches = (int)nudNoches.Value;
+            decimal tarifa = Convert.ToDecimal(txtTarifa.Text);
+            int CantidadHuespedes = (int)nudHuespedes.Value;
+            bool temporadaAlta = ckTemporada.Checked;
+            bool FinDeSemana = chkFinSemana.Checked;
+
+            decimal subtotal = noches * tarifa;
+            decimal descuento = 0m;
+            if (noches >= 7)
+            {
+                descuento = subtotal * 0.10m;
+            }
+
+            decimal baseImponible = subtotal - descuento;
+            decimal itbis = baseImponible * 0.18m;
+            decimal servicio = baseImponible * 0.10m;
+            decimal total = (baseImponible + itbis + servicio); // la respuesta es 512//
+
+            if (temporadaAlta)
+            {
+                total += total * 0.25m;
+            }
+
+            if (FinDeSemana)
+            {
+                total += total * 0.15m;
+            }
+
+            decimal totalPorPersona = total / CantidadHuespedes;
+
+            lstResultados.Items.Add($"[En total:] {huesped}: US$ {total:N2} [Por persona] US$ {totalPorPersona:N2} ");
+        }
+
+        private void btnDeposito_Click(object sender, EventArgs e)
+        {
+            int noches = (int)nudNoches.Value;
+            decimal tarifa = Convert.ToDecimal(txtTarifa.Text);
+            int CantidadHuespedes = (int)nudHuespedes.Value;
+            bool temporadaAlta = ckTemporada.Checked;
+            bool FinDeSemana = chkFinSemana.Checked;
+
+            decimal subtotal = noches * tarifa;
+            decimal baseImponible = subtotal;
+            decimal itbis = baseImponible * 0.18m;
+            decimal servicio = baseImponible * 0.10m;
+            decimal total = (baseImponible + itbis + servicio);
+
+            if (temporadaAlta)
+            {
+                total += total * 0.25m;
+            }
+
+            if (FinDeSemana)
+            {
+                total += total * 0.15m;
+            }
+
+
+            decimal tasa = Convert.ToDecimal(nudTasa.Value);
+            decimal pesos = tasa * total;
+
+            decimal deposito = pesos * 0.30m;
+            decimal saldoPendiente = pesos - deposito;
+
+            lstResultados.Items.Add($"Deposito inicial: RD$ {deposito:N2}");
+            lstResultados.Items.Add($"Pendiente: RD$ {saldoPendiente:N2}");
+        }
+
+        private void btnFinSemana_Click(object sender, EventArgs e)
+        {
+            string huesped = txtHuesped.Text;
+            int noches = (int)nudNoches.Value;
+            decimal tarifa = Convert.ToDecimal(txtTarifa.Text);
+            bool temporadaAlta = ckTemporada.Checked;
+            bool FinDeSemana = chkFinSemana.Checked;
+
+            decimal subtotal = noches * tarifa;
+            decimal descuento = 0m;
+            if (noches >= 7)
+            {
+                descuento = subtotal * 0.10m;
+            }
+
+            decimal baseImponible = subtotal - descuento;
+            decimal itbis = baseImponible * 0.18m;
+            decimal servicio = baseImponible * 0.10m;
+            decimal total = (baseImponible + itbis + servicio);
+
+            if (temporadaAlta)
+            {
+                total += total * 0.25m;
+            }
+
+            if (FinDeSemana)
+            {
+                total = total * 0.15m;
+            }
+
+            lstResultados.Items.Add($"[Fin de semana (15%)] {huesped}: US$ {total:N2}");
+        }
+
+        private void btnFactura_Click(object sender, EventArgs e)
+        {
+            string huesped = txtHuesped.Text;
+            int noches = (int)nudNoches.Value;
+            decimal tarifa = Convert.ToDecimal(txtTarifa.Text);
+            bool temporadaAlta = ckTemporada.Checked;
+            bool FinDeSemana = chkFinSemana.Checked;
+
+            decimal subtotal = noches * tarifa;
+            decimal descuento = 0m;
+            if (noches >= 7)
+            {
+                descuento = subtotal * 0.10m;
+            }
+
+            decimal baseImponible = subtotal - descuento;
+            decimal itbis = baseImponible * 0.18m;
+            decimal servicio = baseImponible * 0.10m;
+            decimal total = (baseImponible + itbis + servicio);
+
+            if (temporadaAlta)
+            {
+                total += total * 0.25m;
+            }
+
+            if (FinDeSemana)
+            {
+                total += total * 0.15m;
+            }
+
+            lstResultados.Items.Add($"[Subtotal] {huesped}: US$ {subtotal:N2}");
+            lstResultados.Items.Add($"[Descuento] {huesped}: US$ {descuento:N2}");
+            lstResultados.Items.Add($"[Base imponible] {huesped}: US$ {baseImponible:N2}");
+            lstResultados.Items.Add($"[ITBS] {huesped}: US$ {itbis:N2}");
+            lstResultados.Items.Add($"[Servicio] {huesped}: US$ {servicio:N2}");
+            lstResultados.Items.Add($"[Total] {huesped}: US$ {total:N2}");
         }
     }
 }
