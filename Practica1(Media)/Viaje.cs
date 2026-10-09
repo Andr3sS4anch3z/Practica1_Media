@@ -10,9 +10,12 @@ namespace Practica1_Media_
     public class Viaje
     {
         public int Pasajeros { get; set; }
-        public bool Nocturno { get; set; } 
-        public decimal subtotal { get; set; } 
-        public decimal recargo { get; set; } 
+        public bool Nocturno { get; set; }
+        public decimal subtotal => Pasajeros * 25m;
+        public decimal recargo => Nocturno ? subtotal : 0m;
+        public decimal Total => recargo;
+
+        
 
          
 

@@ -38,6 +38,10 @@ namespace Practica1_Media_
             btnCalcular = new Button();
             btnLimpiar = new Button();
             gbCotizador = new GroupBox();
+            label2 = new Label();
+            numConsumo = new NumericUpDown();
+            chkTrasladoNocturno = new CheckBox();
+            label1 = new Label();
             chkFinSemana = new CheckBox();
             nudHuespedes = new NumericUpDown();
             lblHuespedes = new Label();
@@ -51,8 +55,13 @@ namespace Practica1_Media_
             btnDeposito = new Button();
             btnFinSemana = new Button();
             btnFactura = new Button();
+            btnViajes = new Button();
+            button1 = new Button();
+            btnUsoMinibar = new Button();
+            btnCuenta = new Button();
             ((System.ComponentModel.ISupportInitialize)nudNoches).BeginInit();
             gbCotizador.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numConsumo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudHuespedes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTasa).BeginInit();
             SuspendLayout();
@@ -96,7 +105,7 @@ namespace Practica1_Media_
             // lblTarifa
             // 
             lblTarifa.AutoSize = true;
-            lblTarifa.Location = new Point(23, 150);
+            lblTarifa.Location = new Point(23, 136);
             lblTarifa.Name = "lblTarifa";
             lblTarifa.Size = new Size(159, 20);
             lblTarifa.TabIndex = 4;
@@ -104,16 +113,16 @@ namespace Practica1_Media_
             // 
             // txtTarifa
             // 
-            txtTarifa.Location = new Point(179, 147);
+            txtTarifa.Location = new Point(179, 133);
             txtTarifa.Name = "txtTarifa";
-            txtTarifa.Size = new Size(174, 27);
+            txtTarifa.Size = new Size(262, 27);
             txtTarifa.TabIndex = 5;
             txtTarifa.TextChanged += textBox1_TextChanged;
             // 
             // ckTemporada
             // 
             ckTemporada.AutoSize = true;
-            ckTemporada.Location = new Point(23, 182);
+            ckTemporada.Location = new Point(22, 235);
             ckTemporada.Name = "ckTemporada";
             ckTemporada.Size = new Size(190, 24);
             ckTemporada.TabIndex = 6;
@@ -142,6 +151,10 @@ namespace Practica1_Media_
             // 
             // gbCotizador
             // 
+            gbCotizador.Controls.Add(label2);
+            gbCotizador.Controls.Add(numConsumo);
+            gbCotizador.Controls.Add(chkTrasladoNocturno);
+            gbCotizador.Controls.Add(label1);
             gbCotizador.Controls.Add(chkFinSemana);
             gbCotizador.Controls.Add(nudHuespedes);
             gbCotizador.Controls.Add(lblHuespedes);
@@ -160,10 +173,46 @@ namespace Practica1_Media_
             gbCotizador.TabStop = false;
             gbCotizador.Text = "Cotizador";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(22, 169);
+            label2.Name = "label2";
+            label2.Size = new Size(151, 20);
+            label2.TabIndex = 14;
+            label2.Text = "Consumo del minibar";
+            // 
+            // numConsumo
+            // 
+            numConsumo.Location = new Point(179, 166);
+            numConsumo.Maximum = new decimal(new int[] { 15, 0, 0, 0 });
+            numConsumo.Name = "numConsumo";
+            numConsumo.Size = new Size(262, 27);
+            numConsumo.TabIndex = 13;
+            // 
+            // chkTrasladoNocturno
+            // 
+            chkTrasladoNocturno.AutoSize = true;
+            chkTrasladoNocturno.Location = new Point(23, 265);
+            chkTrasladoNocturno.Name = "chkTrasladoNocturno";
+            chkTrasladoNocturno.Size = new Size(336, 24);
+            chkTrasladoNocturno.TabIndex = 12;
+            chkTrasladoNocturno.Text = "Servicio del traslado 25USD$ (Nocturno +15%";
+            chkTrasladoNocturno.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(22, 292);
+            label1.Name = "label1";
+            label1.Size = new Size(101, 20);
+            label1.TabIndex = 11;
+            label1.Text = "Tasa del dolar";
+            // 
             // chkFinSemana
             // 
             chkFinSemana.AutoSize = true;
-            chkFinSemana.Location = new Point(219, 182);
+            chkFinSemana.Location = new Point(214, 235);
             chkFinSemana.Name = "chkFinSemana";
             chkFinSemana.Size = new Size(178, 24);
             chkFinSemana.TabIndex = 10;
@@ -193,7 +242,7 @@ namespace Practica1_Media_
             // 
             nudTasa.AutoSize = true;
             nudTasa.DecimalPlaces = 2;
-            nudTasa.Location = new Point(179, 212);
+            nudTasa.Location = new Point(179, 290);
             nudTasa.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudTasa.Name = "nudTasa";
             nudTasa.Size = new Size(150, 27);
@@ -286,11 +335,55 @@ namespace Practica1_Media_
             btnFactura.UseVisualStyleBackColor = true;
             btnFactura.Click += btnFactura_Click;
             // 
+            // btnViajes
+            // 
+            btnViajes.Location = new Point(212, 447);
+            btnViajes.Name = "btnViajes";
+            btnViajes.Size = new Size(192, 29);
+            btnViajes.TabIndex = 19;
+            btnViajes.Text = "Servicio de viajes";
+            btnViajes.UseVisualStyleBackColor = true;
+            btnViajes.Click += btnViajes_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(17, 482);
+            button1.Name = "button1";
+            button1.Size = new Size(189, 29);
+            button1.TabIndex = 20;
+            button1.Text = "Excursion";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // btnUsoMinibar
+            // 
+            btnUsoMinibar.Location = new Point(212, 482);
+            btnUsoMinibar.Name = "btnUsoMinibar";
+            btnUsoMinibar.Size = new Size(192, 29);
+            btnUsoMinibar.TabIndex = 21;
+            btnUsoMinibar.Text = "Consumo del minibar";
+            btnUsoMinibar.UseVisualStyleBackColor = true;
+            btnUsoMinibar.Click += btnUsoMinibar_Click;
+            // 
+            // btnCuenta
+            // 
+            btnCuenta.Location = new Point(17, 520);
+            btnCuenta.Name = "btnCuenta";
+            btnCuenta.Size = new Size(387, 29);
+            btnCuenta.TabIndex = 22;
+            btnCuenta.Text = "Factura final";
+            btnCuenta.UseVisualStyleBackColor = true;
+            btnCuenta.Click += btnCuenta_Click;
+            // 
             // frmInicio
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(889, 561);
+            Controls.Add(btnCuenta);
+            Controls.Add(btnUsoMinibar);
+            Controls.Add(button1);
+            Controls.Add(btnViajes);
             Controls.Add(btnFactura);
             Controls.Add(btnFinSemana);
             Controls.Add(btnDeposito);
@@ -312,6 +405,7 @@ namespace Practica1_Media_
             ((System.ComponentModel.ISupportInitialize)nudNoches).EndInit();
             gbCotizador.ResumeLayout(false);
             gbCotizador.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numConsumo).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudHuespedes).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudTasa).EndInit();
             ResumeLayout(false);
@@ -346,5 +440,13 @@ namespace Practica1_Media_
         private CheckBox chkFinSemana;
         private Button btnFinSemana;
         private Button btnFactura;
+        private Button btnViajes;
+        private CheckBox chkTrasladoNocturno;
+        private Label label1;
+        private Button button1;
+        private Button btnUsoMinibar;
+        private Label label2;
+        private NumericUpDown numConsumo;
+        private Button btnCuenta;
     }
 }

@@ -1,3 +1,5 @@
+using Practica1Media;
+
 namespace Practica1_Media_
 {
     public partial class frmInicio : Form
@@ -43,7 +45,6 @@ namespace Practica1_Media_
             int noches = (int)nudNoches.Value;
             decimal tarifa = Convert.ToDecimal(txtTarifa.Text);
             bool temporadaAlta = ckTemporada.Checked;
-            bool FinDeSemana = chkFinSemana.Checked;
 
             decimal subtotal = noches * tarifa;
             decimal descuento = 0m;
@@ -278,6 +279,161 @@ namespace Practica1_Media_
             lstResultados.Items.Add($"[ITBS] {huesped}: US$ {itbis:N2}");
             lstResultados.Items.Add($"[Servicio] {huesped}: US$ {servicio:N2}");
             lstResultados.Items.Add($"[Total] {huesped}: US$ {total:N2}");
+        }
+
+        private void btnViajes_Click(object sender, EventArgs e)
+        {
+            Viaje v = new Viaje();
+            string huesped = txtHuesped.Text;
+            bool Nocturno = chkTrasladoNocturno.Checked;
+            int CantidadHuespedes = (int)nudHuespedes.Value;
+            v.Pasajeros = CantidadHuespedes;
+
+            if (Nocturno)
+            {
+                v.Nocturno = true;
+
+            }
+
+            if (v.Nocturno == true)
+            {
+
+                decimal TrasladoNocturno = 1.20m * (v.subtotal);
+                lstResultados.Items.Add($"[Noturno] {huesped}: US$ {TrasladoNocturno:N2}");
+            }
+
+            else
+            {
+                decimal traslado = (v.subtotal);
+                lstResultados.Items.Add($"[Normal] {huesped}: US$ {traslado:N2}");
+            }
+
+
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Excursion ex = new Excursion();
+
+            string huesped = txtHuesped.Text;
+            int CantidadHuespedes = (int)nudHuespedes.Value;
+
+            ex.Personas = CantidadHuespedes;
+            ex.PrecioPorPersona = 50m;
+
+            if (ex.Personas >= 4)
+            {
+                decimal subtotal = (ex.subtotal);
+                decimal descuento = (ex.descuento);
+                decimal total = subtotal - descuento;
+                lstResultados.Items.Add($"[Aplica descuento] {huesped}: US$ {total:N2}");
+
+            }
+
+            else
+            {
+                decimal subtotal = (ex.subtotal);
+                lstResultados.Items.Add($"[normal] {huesped}: US$ {subtotal:N2}");
+            }
+
+        }
+
+        private void btnUsoMinibar_Click(object sender, EventArgs e)
+        {
+            Minibar m = new Minibar();
+            string huesped = txtHuesped.Text;
+            m.Cantidad = (int)numConsumo.Value;
+            m.precioUnitario = 3.50m;
+
+            decimal CantidadDeConsumo = (m.Cantidad);
+            decimal PrecioUnitario = (m.precioUnitario);
+            decimal subtotal = (m.subtotal);
+            decimal ITBS = (m.ITBS);
+            decimal total = (m.total);
+
+            lstResultados.Items.Add($"[Consumo] {huesped}: US$ {total:N2}");
+        }
+
+        private void btnCuenta_Click(object sender, EventArgs e)
+        {
+            Viaje v = new Viaje();
+            Excursion ex = new Excursion();
+            Minibar m = new Minibar();
+
+            string huesped = txtHuesped.Text;
+            int noches = (int)nudNoches.Value;
+            decimal tarifa = Convert.ToDecimal(txtTarifa.Text);
+            int CantidadHuespedes = (int)nudHuespedes.Value;
+            v.Pasajeros = CantidadHuespedes;
+
+            //Reserva
+
+            decimal subtotal = noches * tarifa;
+            decimal descuento = 0m;
+
+            if (noches >= 7)
+            {
+                descuento = subtotal * 0.10m;
+            }
+
+            decimal baseImponible = subtotal - descuento;
+            decimal itbis = baseImponible * 0.18m;
+            decimal servicio = baseImponible * 0.10m;
+            decimal totalReserva = (baseImponible + itbis + servicio);
+
+            //Viajes
+
+            bool Nocturno = chkTrasladoNocturno.Checked;
+
+            if (Nocturno)
+            {
+                v.Nocturno = true;
+            }
+
+            if (v.Nocturno == true)
+            {
+                decimal TrasladoNocturno = 1.20m * (v.subtotal);
+            }
+
+            else
+            {
+                decimal traslado = (v.subtotal);
+            }
+
+            //Excursion
+
+            ex.Personas = CantidadHuespedes;
+            ex.PrecioPorPersona = 50m;
+
+            if (ex.Personas >= 4)
+            {
+                decimal subtotalEx = (ex.subtotal);
+                decimal descuentoEx = (ex.descuento);
+                decimal totalEx = subtotalEx - descuentoEx;
+
+            }
+
+            else
+            {
+                decimal subtotalEx = (ex.subtotal);
+            }
+
+            //Minibar
+
+            m.Cantidad = (int)numConsumo.Value;
+            m.precioUnitario = 3.50m;
+
+            decimal CantidadDeConsumo = (m.Cantidad);
+            decimal PrecioUnitario = (m.precioUnitario);
+            decimal subtotalbar = (m.subtotal);
+            decimal ITBS = (m.ITBS);
+            decimal totalbar = (m.total);
+
+            decimal FacturaTotal = totalReserva + v.subtotal + ex.subtotal + totalbar;
+
+            lstResultados.Items.Add($"[Consumo] {huesped}: US$ {FacturaTotal:N2}");
         }
     }
 }
