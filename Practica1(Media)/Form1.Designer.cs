@@ -59,6 +59,7 @@ namespace Practica1_Media_
             button1 = new Button();
             btnUsoMinibar = new Button();
             btnCuenta = new Button();
+            btnViejo = new Button();
             ((System.ComponentModel.ISupportInitialize)nudNoches).BeginInit();
             gbCotizador.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numConsumo).BeginInit();
@@ -271,7 +272,7 @@ namespace Practica1_Media_
             lstResultados.FormattingEnabled = true;
             lstResultados.Location = new Point(510, 23);
             lstResultados.Name = "lstResultados";
-            lstResultados.Size = new Size(367, 444);
+            lstResultados.Size = new Size(425, 444);
             lstResultados.TabIndex = 12;
             lstResultados.SelectedIndexChanged += lstResultados_SelectedIndexChanged;
             // 
@@ -375,11 +376,22 @@ namespace Practica1_Media_
             btnCuenta.UseVisualStyleBackColor = true;
             btnCuenta.Click += btnCuenta_Click;
             // 
+            // btnViejo
+            // 
+            btnViejo.Location = new Point(410, 520);
+            btnViejo.Name = "btnViejo";
+            btnViejo.Size = new Size(180, 29);
+            btnViejo.TabIndex = 23;
+            btnViejo.Text = "Sistema viejo";
+            btnViejo.UseVisualStyleBackColor = true;
+            btnViejo.Click += btnViejo_Click;
+            // 
             // frmInicio
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(889, 561);
+            ClientSize = new Size(947, 561);
+            Controls.Add(btnViejo);
             Controls.Add(btnCuenta);
             Controls.Add(btnUsoMinibar);
             Controls.Add(button1);
@@ -448,5 +460,6 @@ namespace Practica1_Media_
         private Label label2;
         private NumericUpDown numConsumo;
         private Button btnCuenta;
+        private Button btnViejo;
     }
 }
